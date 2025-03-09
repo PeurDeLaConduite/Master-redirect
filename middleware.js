@@ -7,15 +7,15 @@ export function middleware(req) {
     const response = NextResponse.redirect(
         new URL(
             isMobile
-                ? "https://mobile-peur-de-la-conduite.wii-design.com/#slider"
-                : "https://desktop-peur-de-la-conduite.wii-design.com/#slider",
+                ? "https://mobile.peur-de-la-conduite.fr/#slider"
+                : "https://desktop.peur-de-la-conduite.fr/#slider",
             req.url
         )
     );
 
     response.cookies.set("deviceType", isMobile ? "mobile" : "desktop", {
         path: "/",
-        domain: ".wii-design.com",
+        domain: ".peur-de-la-conduite.fr",
         httpOnly: true,
         secure: true,
         sameSite: "strict",
