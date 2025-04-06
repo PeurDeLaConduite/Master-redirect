@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 export function middleware(req) {
     const userAgent = req.headers.get("user-agent") || "";
     const isMobile = /Mobi|Android/i.test(userAgent);
+    const isBot = /bot|crawl|slurp|spider|mediapartners/i.test(userAgent);
 
+    if (isBot) return NextResponse.next();
     const response = NextResponse.redirect(
         new URL(
             isMobile
