@@ -2,20 +2,28 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
     const userAgent = req.headers.get("user-agent") || "";
-    const isMobile = /Mobi|Android/i.test(userAgent);
     const isBot = /bot|crawl|slurp|spider|mediapartners/i.test(userAgent);
 
-    if (isBot) return NextResponse.next();
-    const response = NextResponse.redirect(
-        new URL(
-            isMobile
-                ? "https://mobile.peur-de-la-conduite.fr/#slider"
-                : "https://desktop.peur-de-la-conduite.fr/#slider",
-            req.url
-        )
-    );
+    // Vraie détection tablette : iPad OU Android mais PAS mobile
+    const isTablet =
+        /(iPad|Tablet)/i.test(userAgent) ||
+        (/(Android)/i.test(userAgent) && !/(Mobile)/i.test(userAgent));
 
-    response.cookies.set("deviceType", isMobile ? "mobile" : "desktop", {
+    const isMobile =
+        !isTablet && /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+
+    if (isBot) return NextResponse.next();
+
+    let deviceType = "desktop";
+    let redirectUrl = "https://desktop.peur-de-la-conduite.fr/#slider";
+    if (isMobile) {
+        deviceType = "mobile";
+        redirectUrl = "https://mobile.peur-de-la-conduite.fr/#slider";
+    }
+    // ici tablette = desktop, pas de redirection mobile
+
+    const response = NextResponse.redirect(new URL(redirectUrl, req.url));
+    response.cookies.set("deviceType", deviceType, {
         path: "/",
         domain: ".peur-de-la-conduite.fr",
         httpOnly: true,
