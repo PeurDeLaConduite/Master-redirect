@@ -1,4 +1,9 @@
 User-agent: *
-Allow: /
+# autorise explicitement :
+Allow: /$                # la seule URL “/”
+Allow: /robots.txt       # votre fichier robots.txt
+Allow: /sitemap.xml      # votre sitemap index
+# bloque tout le reste
+Disallow: /
 
 Sitemap: https://peur-de-la-conduite.fr/sitemap.xml
