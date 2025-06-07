@@ -3,6 +3,7 @@ User-agent: *
 Allow: /$                # la seule URL “/”
 Allow: /robots.txt       # votre fichier robots.txt
 Allow: /sitemap.xml      # votre sitemap index
+Allow: /favicon.ico 
 # bloque tout le reste
 Disallow: /
 
