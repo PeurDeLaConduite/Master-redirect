@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://peur-de-la-conduite.fr/sitemap.xml
