@@ -1,16 +1,3 @@
 User-agent: *
-# autorise explicitement :
-Allow: /$                # la seule URL “/”
-Allow: /robots.txt       # votre fichier robots.txt
-Allow: /sitemap.xml      # votre sitemap index
-Allow: /favicon.ico 
-Allow: /mentions-legales
-Allow: /informations-legales
-Allow: /services
-Allow: /blog
-Allow: /tarifs
-Allow: /contact
-# bloque tout le reste
-Disallow: /
-
+Allow: /
 Sitemap: https://peur-de-la-conduite.fr/sitemap.xml
