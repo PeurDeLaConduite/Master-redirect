@@ -36,6 +36,6 @@
         "src/components/header/HeaderGhost.jsx",
         "src/home/service/Component/servicesData.js",
         "src/utils/setT.js"
-    ],
+, "middleware.ts"    ],
     "exclude": ["node_modules"]
 }
