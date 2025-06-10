@@ -7,10 +7,8 @@ export function middleware(req: NextRequest) {
 
   // 1) Laissez passer ces URLs pour que robots.txt et sitemap.xml soient servis
   if (
-    pathname.startsWith("/_next") ||
     pathname.startsWith("/img") ||
     pathname.startsWith("/css") ||
-    pathname.startsWith("/fonts") ||
     pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml"
