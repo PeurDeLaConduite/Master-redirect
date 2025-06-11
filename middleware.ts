@@ -18,7 +18,7 @@ export function middleware(req: NextRequest) {
   const ua = req.headers.get("user-agent") || "";
   const isTablet =
     /(iPad|Tablet)/i.test(ua) ||
-    (/(Android)/i.test(ua) && !/Mobile/i.test(ua));
+    (/(Android)/i.test(ua) && !/Mobile/i.test(ua)) || !/(Android)/i.test(ua);
   const isMobile =
     !isTablet &&
     /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
