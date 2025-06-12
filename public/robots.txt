@@ -1,3 +1,42 @@
+# =================================================================
+# Bloquer les dossiers de code source / assets internes
+# =================================================================
+User-agent: *
+Disallow: /amplify/
+Disallow: /src/
+Disallow: /utils/
+Disallow: /app/fonts/
+Disallow: /public/css/
+
+# =================================================================
+# Bloquer les pages sans contenu ou à exclure
+# =================================================================
+User-agent: *
+# Réservations & connexion (pages vides ou sensibles)
+Disallow: /reservation
+Disallow: /connection
+# Page de recherche mobile (duplication / filtrage)
+Disallow: /search
+# États transitoires Next.js (chargement, erreur)
+Disallow: /*/loading
+Disallow: /*/error
+
+# =================================================================
+# Bloquer les assets statiques (polices, images, scripts Next.js)
+# =================================================================
+User-agent: *
+Disallow: /_next/static/media/
+Disallow: /_next/static/chunks/
+Disallow: /img/
+Disallow: /css/
+
+# =================================================================
+# Autoriser tout le reste (vos pages HTML importantes)
+# =================================================================
 User-agent: *
 Allow: /
+
+# =================================================================
+# Sitemaps
+# =================================================================
 Sitemap: https://peur-de-la-conduite.fr/sitemap.xml
