@@ -28,14 +28,22 @@ frontend:
             - .next/cache/**/*
             - .npm/**/*
             - node_modules/**/*
-
-    customHeaders: # <--- Ici seulement, une seule fois sous frontend
-        - pattern: "/img/**"
+            
+    customHeaders:
+        - pattern: "/_next/static/**"
           headers:
               - key: "Cache-Control"
-                value: "public, max-age=31536000, immutable"
-        - pattern: "/*" # ou "/*" pour ouvrir tout le site
+                value: "public, max-age=60"
+
+        - pattern: "/img/**"
           headers:
+            - key: "Cache-Control"
+              value: "public, max-age=31536000, immutable"
+
+        - pattern: "/*"
+          headers:
+              - key: "Cache-Control"
+                value: "public, max-age=60, must-revalidate"
               - key: "Access-Control-Allow-Origin"
                 value: "https://mobile.peur-de-la-conduite.fr"
               - key: "Access-Control-Allow-Credentials"
