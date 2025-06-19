@@ -34,12 +34,6 @@ export default function RootLayout() {
                     sizes="512x512"
                     type="image/png"
                 />
-                <link
-                    rel="apple-touch-icon"
-                    href="https://assets.peur-de-la-conduite.fr/img/favicon/apple-touch-icon.png"
-                    sizes="180x180"
-                    type="image/png"
-                />
                 <link rel="canonical" href="https://peur-de-la-conduite.fr" />
             </head>
             <body>server</body>
