@@ -12,9 +12,9 @@ export default function RootLayout() {
                 />
                 <link
                     rel="icon"
-                    href="https://assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png"
+                    href="https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg"
                     sizes="16x16"
-                    type="image/png"
+                    type="image/svg+xml"
                 />
                 <link
                     rel="icon"
