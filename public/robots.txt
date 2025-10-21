@@ -94,9 +94,10 @@ User-agent: MistralAI-User
 Disallow: /
 User-agent: Perplexity-User
 Disallow: /
-
 User-agent: GPTBot
 Disallow: /
+
+# 1 Autoriser explicitement les bots
 
 User-agent: ChatGPT‑User
 Disallow:
@@ -109,7 +110,6 @@ Disallow:
 
 User-agent: LinkedInBot
 Disallow:
-
 
 User-agent: Googlebot
 Disallow:
@@ -129,17 +129,20 @@ Disallow: /
 
 
 # 1 Autoriser explicitement vos pages clés
+
 Allow: /$
 Allow: /services$
 Allow: /tarifs$
 Allow: /contact$
 Allow: /mentions-legales$
 Allow: /informations-legales$
+
 # 2 Autoriser explicitement toutes les pages blog
 Allow: /blog/
 
 
 # 2 Bloquer les dossiers de code source / assets internes
+
 Disallow: /amplify/
 Disallow: /src/
 Disallow: /utils/
@@ -147,6 +150,7 @@ Disallow: /app/fonts/
 Disallow: /public/css/
 
 # 3 Bloquer les pages sans contenu ou à exclure
+
 Disallow: /reservation
 Disallow: /connection
 Disallow: /search
@@ -159,6 +163,7 @@ Disallow: /*/error
 # Disallow: /_next/static/chunks/
 # Disallow: /img/
 # Disallow: /css/
+
 
 # =================================================================
 # Sitemaps
