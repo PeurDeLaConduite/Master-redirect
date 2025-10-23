@@ -10,25 +10,27 @@ customHeaders:
       headers:
           - key: Cache-Control
             value: "public, max-age=31536000, immutable"
-          - key: Cross-Origin-Resource-Policy
-            value: "cross-origin"
 
     # /services/** — 1 an (si tu y mets des SVG/PNG/etc.)
-    - pattern: "/services/**"
+    - pattern: "/img/services/**"
       headers:
           - key: Cache-Control
             value: "public, max-age=31536000, immutable"
 
+    - pattern: "/img/about/**"
+      headers:
+          - key: Cache-Control
+            value: "public, max-age=31536000, immutable"
     # CSS — TTL différenciés
-    - pattern: "/css/globals.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=1468800, stale-while-revalidate=86400" # ~17j + 1j S-W-R
-    - pattern: "/css/mobileDefer.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=3600, must-revalidate"
-    - pattern: "/css/desktopDefer.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=3600, must-revalidate"
+    # - pattern: "/css/globals.css"
+    #   headers:
+    #       - key: Cache-Control
+    #         value: "public, max-age=1468800, stale-while-revalidate=86400" # ~17j + 1j S-W-R
+    # - pattern: "/css/mobileDefer.css"
+    #   headers:
+    #       - key: Cache-Control
+    #         value: "public, max-age=3600, must-revalidate"
+    # - pattern: "/css/desktopDefer.css"
+    #   headers:
+    #       - key: Cache-Control
+    #         value: "public, max-age=3600, must-revalidate"
