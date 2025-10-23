@@ -29,26 +29,38 @@ frontend:
             - .npm/**/*
             - node_modules/**/*
             
-    customHeaders:
-        - pattern: "/_next/static/**"
-          headers:
-              - key: "Cache-Control"
-                value: "public, max-age=60"
+  customHeaders:
+    - pattern: "/_next/static/**"
+      headers:
+        - key: "Cache-Control"
+          value: "public, max-age=60"
 
-        - pattern: "/img/**"
-          headers:
-            - key: "Cache-Control"
-              value: "public, max-age=31536000, immutable"
+    - pattern: "/img/**"
+      headers:
+        - key: "Cache-Control"
+          value: "public, max-age=31536000, immutable"
+        - key: "Access-Control-Allow-Origin"
+          value: "*"
+        - key: "Cross-Origin-Resource-Policy"
+          value: "cross-origin"
 
-        - pattern: "/*"
-          headers:
-              - key: "Cache-Control"
-                value: "public, max-age=60, must-revalidate"
-              - key: "Access-Control-Allow-Origin"
-                value: "https://mobile.peur-de-la-conduite.fr"
-              - key: "Access-Control-Allow-Credentials"
-                value: "true"
-              - key: "Access-Control-Allow-Methods"
-                value: "GET,POST,OPTIONS"
-              - key: "Access-Control-Allow-Headers"
-                value: "Content-Type,Authorization"
+    - pattern: "/services/**"
+      headers:
+        - key: "Cache-Control"
+          value: "public, max-age=31536000, immutable"
+        # (optionnel) même remarque CORS:
+        # - key: "Access-Control-Allow-Origin"
+        #   value: "https://mobile.peur-de-la-conduite.fr"
+
+    - pattern: "/*"
+      headers:
+        - key: "Cache-Control"
+          value: "public, max-age=60, must-revalidate"
+        - key: "Access-Control-Allow-Origin"
+          value: "https://mobile.peur-de-la-conduite.fr"
+        - key: "Access-Control-Allow-Credentials"
+          value: "true"
+        - key: "Access-Control-Allow-Methods"
+          value: "GET,POST,OPTIONS"
+        - key: "Access-Control-Allow-Headers"
+          value: "Content-Type,Authorization"

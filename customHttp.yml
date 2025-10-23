@@ -1,33 +1,55 @@
 # customHttp.yml
 customHeaders:
-    # Fonts WOFF2 — 1 an
-    - pattern: "/media/*.woff2"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=31536000, s-maxage=31536000, immutable"
-          - key: Access-Control-Allow-Origin
-            value: "*"
+  # Fonts WOFF2 — 1 an (tous sous-dossiers)
+  - pattern: "/media/**/*.woff2"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, s-maxage=31536000, immutable"
+      - key: Access-Control-Allow-Origin
+        value: "*"
+      - key: Cross-Origin-Resource-Policy
+        value: "cross-origin"
 
-    # Chunks/JS hashés — 1 an
-    - pattern: "/chunks/*"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=31536000, s-maxage=31536000, immutable"
+  # Images *.svg — 1 an (tous sous-dossiers de /img)
+  - pattern: "/img/**/*.svg"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, s-maxage=31536000, immutable"
+      - key: Access-Control-Allow-Origin
+        value: "*"
+      - key: Cross-Origin-Resource-Policy
+        value: "cross-origin"
 
-    # CSS global — 17 jours
-    - pattern: "/css/globals.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=1468800, s-maxage=1468800, stale-while-revalidate=86400"
+  # Images /img/** (tous formats : png, webp, jpg, svg, ico, etc.) — 1 an
+  - pattern: "/img/**"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, s-maxage=31536000, immutable"
+      - key: Access-Control-Allow-Origin
+        value: "*"
+      - key: Cross-Origin-Resource-Policy
+        value: "cross-origin"
 
-    # CSS mobileDefer — 1 heure
-    - pattern: "/css/mobileDefer.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=3600, s-maxage=3600, must-revalidate"
+  # Chunks/JS hashés — 1 an (si dossier public/chunks)
+  - pattern: "/chunks/**"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=31536000, s-maxage=31536000, immutable"
 
-    # CSS desktopDefer — 1 heure
-    - pattern: "/css/desktopDefer.css"
-      headers:
-          - key: Cache-Control
-            value: "public, max-age=3600, s-maxage=3600, must-revalidate"
+  # CSS global — 17 jours
+  - pattern: "/css/globals.css"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=1468800, s-maxage=1468800, stale-while-revalidate=86400"
+
+  # CSS mobileDefer — 1 h
+  - pattern: "/css/mobileDefer.css"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=3600, s-maxage=3600, must-revalidate"
+
+  # CSS desktopDefer — 1 h
+  - pattern: "/css/desktopDefer.css"
+    headers:
+      - key: Cache-Control
+        value: "public, max-age=3600, s-maxage=3600, must-revalidate"
