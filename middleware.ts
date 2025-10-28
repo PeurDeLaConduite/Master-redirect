@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
+
 export function middleware(request) {
     const { pathname, search } = request.nextUrl;
+    const currentHost = request.headers.get("host") ?? "";
+    const deviceTypeCookie = request.cookies.get("deviceType")?.value;
+
+    // Bypass certains fichiers
     if (
+        pathname.startsWith("/_next/") ||
+        pathname.startsWith("/api/") ||
+        pathname.startsWith("/css/") ||
+        pathname.startsWith("/img/") ||
         pathname === "/robots.txt" ||
         pathname === "/sitemap.xml" ||
-        pathname === "/favicon.ico"
+        pathname.startsWith("/favicon")
     ) {
         return NextResponse.next();
     }
-    const deviceTypeCookie = request.cookies.get("deviceType")?.value;
+
     let isMobile;
     if (deviceTypeCookie === "mobile") {
         isMobile = true;
@@ -23,10 +32,21 @@ export function middleware(request) {
             !isTablet &&
             /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
     }
-    const hostname = isMobile
+
+    const expectedHost = isMobile
         ? "mobile.peur-de-la-conduite.fr"
         : "desktop.peur-de-la-conduite.fr";
-    const targetUrl = new URL(`${pathname}${search}`, `https://${hostname}`);
+
+    // 🛑 Si on est déjà sur le bon domaine, ne réécris pas
+    if (currentHost === expectedHost) {
+        return NextResponse.next();
+    }
+
+    const targetUrl = new URL(
+        `${pathname}${search}`,
+        `https://${expectedHost}`
+    );
+
     const response = NextResponse.rewrite(targetUrl);
     response.cookies.set("deviceType", isMobile ? "mobile" : "desktop", {
         path: "/",
@@ -35,6 +55,10 @@ export function middleware(request) {
         secure: true,
         sameSite: "strict",
     });
+
     return response;
 }
-export const config = { matcher: "/:path*" };
+
+export const config = {
+    matcher: ["/:path*"],
+};
