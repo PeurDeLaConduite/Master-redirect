@@ -5,7 +5,6 @@ export function middleware(request) {
         pathname.startsWith("/css/") ||
         pathname.startsWith("/img/") ||
         pathname === "/robots.txt" ||
-        pathname === "/sitemap.xml" ||
         pathname.startsWith("/favicon")
     ) {
         return NextResponse.next();
